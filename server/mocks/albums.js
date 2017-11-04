@@ -157,8 +157,12 @@ module.exports = function(app) {
 
   albumsRouter.get('/:id', function(req, res) {
     res.send({
-      'albums': ALBUM_FIXTURES,
-      'songs': SONG_FIXTURES
+      'albums': ALBUM_FIXTURES.find((item)=>{
+        return item.id === req.id;
+      }),
+      'songs': SONG_FIXTURES.filter((item)=>{
+        return item.album === red.id;
+      }),
     });
   });
 
